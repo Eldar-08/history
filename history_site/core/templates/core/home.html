@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Главная - История Кыргызстана{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h2 class="display-4">Добро пожаловать на сайт по истории Кыргызстана</h2>
+    <p class="lead">Изучайте интересные факты из богатой истории Кыргызстана, от древних времен до наших дней.</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Каменный век</h5>
+                <p class="card-text">Узнайте о первых жителях региона в каменном веке, их сооружениях и образе жизни.</p>
+                <a href="{% url 'stone_age' %}" class="btn btn-primary">Читать больше</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Средние века</h5>
+                <p class="card-text">Откройте для себя эпоху тюркских каганатов и монгольского завоевания.</p>
+                <a href="{% url 'middle_ages' %}" class="btn btn-primary">Читать больше</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Рекомендации</h5>
+                <p class="card-text">Посмотрите рекомендации из других источников.</p>
+                <button class="btn btn-info" onclick="loadRecommendations()">Показать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="home-recommendations" class="mt-5" style="display: none;">
+    <h3>Рекомендации для чтения</h3>
+    <div id="rec-list" class="list-group">
+        <!-- Загружается через JS -->
+    </div>
+</div>
+
+<script>
+    function loadRecommendations() {
+        fetch('/api/recommendations/')
+            .then(response => response.json())
+            .then(data => {
+                const recs = data.recommendations;
+                const list = document.getElementById('rec-list');
+                list.innerHTML = '';
+                recs.forEach(rec => {
+                    const item = document.createElement('a');
+                    item.className = 'list-group-item list-group-item-action';
+                    item.href = rec.url;
+                    item.target = '_blank';
+                    item.innerHTML = `<h5>${rec.title}</h5><p>${rec.description}</p>`;
+                    list.appendChild(item);
+                });
+                document.getElementById('home-recommendations').style.display = 'block';
+            });
+    }
+</script>
+{% endblock %}
