@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ fact.title }} - История Кыргызстана{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>{{ fact.title }}</h2>
+        <p><strong>Период:</strong> {{ fact.period }}</p>
+        {% if fact.year %}<p><strong>Год:</strong> {{ fact.year }}</p>{% endif %}
+        <p>{{ fact.description }}</p>
+        {% if fact.image %}
+        <img src="{{ fact.image.url }}" class="img-fluid mb-3" alt="{{ fact.title }}">
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'toggle_save_fact' fact.pk %}">
+                {% csrf_token %}
+                <button class="btn {% if is_saved %}btn-secondary{% else %}btn-info{% endif %}">
+                    {% if is_saved %}Удалить из сохранённых{% else %}Сохранить{% endif %}
+                </button>
+            </form>
+        {% endif %}
+
+        <hr>
+        <h4>Комментарии</h4>
+        {% for comment in comments %}
+            <div class="mb-2">
+                <strong>{{ comment.author.username }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }})
+                <p>{{ comment.text }}</p>
+            </div>
+        {% empty %}
+            <p>Комментариев нет.</p>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_comment' fact.pk %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="text" class="form-label">Оставьте комментарий</label>
+                <textarea class="form-control" name="text" id="text" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary">Отправить</button>
+        </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

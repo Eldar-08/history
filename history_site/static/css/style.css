@@ -1,42 +1,59 @@
-/* Custom styles for History Site */
+/* ===== GLOBAL ===== */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-size: 1.05rem;
+    color: #1a1a1a;
+    background: linear-gradient(135deg, #fef5f1 0%, #f0e6db 100%);
     margin: 0;
     padding: 0;
 }
 
+/* ===== HEADER ===== */
+
+header,
+.bg-primary {
+    background: linear-gradient(135deg, #8b5a3c 0%, #5c3d2e 100%) !important;
+    color: white !important;
+}
+
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 header h1 {
     margin: 0;
     font-size: 2.5rem;
     text-align: center;
+    color: #f4d03f !important;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
-nav {
-    text-align: center;
-    margin-top: 1rem;
+/* ===== NAVBAR ===== */
+
+.navbar-dark {
+    background: transparent !important;
 }
 
-nav a {
-    color: white;
-    margin: 0 1rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+.navbar-dark .navbar-brand {
+    color: white !important;
 }
 
-nav a:hover {
-    color: #ffd700;
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffd700 !important;
+    font-weight: 600;
+    transition: 0.3s;
 }
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffeb3b !important;
+}
+
+/* ===== LAYOUT ===== */
 
 main {
     max-width: 1200px;
@@ -45,80 +62,179 @@ main {
 }
 
 .container {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg,#ffffff 0%,#f8f9fa 100%);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     margin-bottom: 2rem;
+    border-left: 5px solid #2a5298;
 }
 
+/* ===== TITLES ===== */
+
 h2 {
-    color: #667eea;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 0.5rem;
+    color: #1e3c72 !important;
+    border-bottom: 4px solid #2a5298;
+    padding-bottom: .7rem;
     margin-bottom: 1.5rem;
 }
 
 h3 {
-    color: #764ba2;
+    color: #2a5298 !important;
     margin-top: 2rem;
 }
 
-p {
-    margin-bottom: 1rem;
+h4,
+h5 {
+    color: #1e3c72 !important;
 }
 
-ul {
+/* ===== TEXT ===== */
+
+p {
     margin-bottom: 1rem;
+    color: #333 !important;
+}
+
+.lead {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+/* ===== LIST ===== */
+
+ul {
     padding-left: 2rem;
 }
 
 li {
-    margin-bottom: 0.5rem;
+    margin-bottom: .6rem;
 }
 
-.message {
+/* ===== ALERT / MESSAGE ===== */
+
+.message,
+.alert {
     padding: 1rem;
-    border: 1px solid #4caf50;
-    background: #e8f5e9;
-    color: #256029;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    border: 2px solid #4caf50;
+    background: linear-gradient(135deg,#e8f5e9,#c8e6c9);
+    color: #1b5e20;
+    border-radius: 8px;
 }
 
-.btn {
+/* ===== BUTTONS ===== */
+
+.btn,
+.btn-primary,
+.btn-info {
+
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #667eea;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    padding: .7rem 1.5rem;
+
+    background: linear-gradient(135deg,#2a5298,#1e3c72) !important;
+
+    color: white !important;
+
+    border-radius: 8px;
+    border: none !important;
+
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
-.btn:hover {
-    background: #764ba2;
+.btn:hover,
+.btn-primary:hover,
+.btn-info:hover {
+
+    background: linear-gradient(135deg,#1e3c72,#0d1f2d) !important;
+
+    box-shadow: 0 6px 15px rgba(42,82,152,0.5);
 }
 
-footer {
+/* ===== CARDS ===== */
+
+.card {
+    background: white !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #1e3c72 !important;
+    font-weight: 600;
+}
+
+.card-text {
+    color: #333 !important;
+}
+
+/* ===== FOOTER ===== */
+
+footer,
+.bg-dark {
+
+    background: linear-gradient(135deg,#0d1f2d,#1a2a3a) !important;
+
+    color: #e0e0e0;
+
     text-align: center;
-    padding: 1rem 0;
-    background: #333;
-    color: white;
-    margin-top: 2rem;
+
+    padding: 2rem;
+
+    margin-top: 3rem;
+
+    border-top: 4px solid #2a5298;
 }
 
-@media (max-width: 768px) {
+footer p {
+    margin: 0;
+}
+
+/* ===== FORMS ===== */
+
+.form-control {
+    border: 2px solid #e0e0e0;
+}
+
+.form-control:focus {
+
+    border-color: #2a5298;
+
+    box-shadow: 0 0 0 .2rem rgba(42,82,152,.25);
+}
+
+/* ===== DROPDOWN ===== */
+
+.dropdown-menu {
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.dropdown-item:hover {
+    background: #f5f7fa;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width:768px) {
+
     header h1 {
         font-size: 2rem;
     }
 
     nav a {
         display: block;
-        margin: 0.5rem 0;
+        margin: .5rem 0;
     }
 
     .container {
-        padding: 1rem;
+        padding: 1.5rem;
     }
+
 }

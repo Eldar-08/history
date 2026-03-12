@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Сохранённые факты - История Кыргызстана{% endblock %}
+
+{% block content %}
+<h2>Сохранённые факты</h2>
+{% if saved %}
+    <ul class="list-group">
+        {% for item in saved %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'fact_detail' item.fact.pk %}">{{ item.fact.title }}</a>
+                <form method="post" action="{% url 'toggle_save_fact' item.fact.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-secondary">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Вы ещё не сохранили ни одной статьи.</p>
+{% endif %}
+{% endblock %}

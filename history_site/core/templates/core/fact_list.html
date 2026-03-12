@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Факты - История Кыргызстана{% endblock %}
+
+{% block content %}
+<h2>Исторические факты</h2>
+<div class="row">
+    {% for fact in facts %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if fact.image %}
+            <img src="{{ fact.image.url }}" class="card-img-top" alt="{{ fact.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ fact.title }}</h5>
+                <p class="card-text">{{ fact.description|truncatechars:100 }}</p>
+                <a href="{% url 'fact_detail' fact.pk %}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Фактов не найдено.</p>
+    {% endfor %}
+</div>
+{% endblock %}
